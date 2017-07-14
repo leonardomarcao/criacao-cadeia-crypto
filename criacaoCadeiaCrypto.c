@@ -17,8 +17,8 @@ char * format(int number);
 int main() {
     setlocale(LC_ALL, "Portuguese");
     printf(" ------------------------------------------\n");
-    printf("|        CRIA«√O EM CADEIA - CRYPTO        |\n");
-    printf("|      Copyright 2016 @ Leonardo Marc„o    |\n");
+    printf("|        CRIA√á√ÉO EM CADEIA - CRYPTO        |\n");
+    printf("|      Copyright 2016 @ Leonardo Marc√£o    |\n");
     printf(" ------------------------------------------\n");
     menu();
     return 0;
@@ -27,7 +27,7 @@ int main() {
 //function menu
 void menu() {
     int op;
-    printf("\nEscolha uma das operaÁıes abaixo: \n");
+    printf("\nEscolha uma das opera√ß√µes abaixo: \n");
     printf(" ------------------------------------------\n");
     printf("|        1. Conectar ao financeiro        |\n");
     printf("|        2. Desconectar do financeiro     |\n");
@@ -46,13 +46,13 @@ void menu() {
         desconectFin();        
         break;
     case 3:
-        printf("\nCaso tenha conectado ao financeiro, n„o se esqueÁa de desconectar.\n");
-        printf("O financeiro ser· desconectado automaticamente ao desligar o computador.\n");
+        printf("\nCaso tenha conectado ao financeiro, n√£o se esque√ßa de desconectar.\n");
+        printf("O financeiro ser√° desconectado automaticamente ao desligar o computador.\n");
         printf("Precione qualquer tecla para sair. \n");
         getch();
-        system("exit");
+        exit(1)
     default:
-        printf("OperaÁ„o incorreta! Precione qualquer tecla para retornar!\n");
+        printf("Opera√ß√£o incorreta! Precione qualquer tecla para retornar!\n");
         getch();
         system("cls");
         main();
@@ -114,9 +114,9 @@ void cryptoSecurity() {
     while ((pass != dateForCheck)){
         if (chance != 0){
             printf(" ------------------------------------------\n");
-            printf("|        CRIA«√O EM CADEIA - CRYPTO        |\n");
+            printf("|        CRIA√á√ÉO EM CADEIA - CRYPTO        |\n");
             printf("|           ACESSO AO FINANCEIRO           |\n");
-            printf("|    N⁄MERO DE TENTATIVAS RESTANTES: %d     |\n", chance);
+            printf("|    N√öMERO DE TENTATIVAS RESTANTES: %d     |\n", chance);
             printf(" ------------------------------------------\n");
             
             printf("Digite a senha para conectar ao financeiro: \n");
@@ -125,20 +125,20 @@ void cryptoSecurity() {
             if (((strcmp(dateForCheck, pass)) == 0)){
                 //password entered is correct
                 printf("\n\n ------------------------------------------\n");
-                printf("|        CRIA«√O EM CADEIA - CRYPTO        |\n");
+                printf("|        CRIA√á√ÉO EM CADEIA - CRYPTO        |\n");
                 printf("|             ACESSO PERMETIDO             |\n");                
                 printf(" ------------------------------------------\n");
                 conectToFin();
                 break;                         
             }else{
             	chance--;
-                printf("Senha digitada È incorreta! VocÍ possui mais %d chance (s). \nPrecione qualquer tecla para tentar novamente!\n", chance);
+                printf("Senha digitada √© incorreta! Voc√™ possui mais %d chance (s). \nPrecione qualquer tecla para tentar novamente!\n", chance);
                 getch();
                 //password entered is incorrect                
                 system("cls");
             }
         }else{            
-            printf("O limite de chances esgotou! \nVocÍ ser· desconectado e programa ser· finalizado por motivos de seguranÁa!\n");            
+            printf("O limite de chances esgotou! \nVoc√™ ser√° desconectado e programa ser√° finalizado por motivos de seguran√ßa!\n");            
             getch();                
             desconectFin(); 
             break;
@@ -147,22 +147,25 @@ void cryptoSecurity() {
 }
 
 //function for connect to financial
-void conectToFin() {	    	
-        system("NET USE \\fin\\adm1$ Okane6162 /USER:FINANCEIRO /PERSISTENT:no");
+void conectToFin() {	
+	    system("cmdkey /add:SERVER /user:Administrador /pass:K#M?m@0A");    	
+        system("NET USE z: \\\\SERVER\\ADM K#M?m@0A /user:Administrador /SAVECRED /PERSISTENT:YES");
     	printf("\nConectado com sucesso!\n");
-    	printf("Por favor, n„o se esqueÁa de desconectar.\n");
-    	printf("O financeiro ser· desconectado automaticamente ao desligar o computador.\n");        
+    	printf("Por favor, n√£o se esque√ßa de desconectar.\n");
+    	printf("O financeiro ser√° desconectado automaticamente ao desligar o computador.\n");        
         getch();           
-        system("explorer \\\\fin\\adm1$");     
+        system("explorer \\\\SERVER\\ADM");     
         system("exit");
 }
 
 //function for disconnect to financial
 void desconectFin() { 
-    system("NET USE \\fin\\ADM1$ /DELETE ");
-    system("NET USE \\FIN\\IPC$ /DELETE");
-    system("NET USE \\FIN /DELETE");
-    ststem("cmdkey /delete:fin");
-    system("exit"); 
+    system("NET USE * /DELETE /PERSISTENT:YES");
+   // system("NET USE \\FIN\\IPC$ /DELETE");
+    system("cmdkey /delete:SERVER");
+	system(" cmdkey /add:SERVER /user:PRODUCAO /pass:=#MyLq8&"); 
+	system("NET USE n: \\\\SERVER\\3D =#MyLq8& /USER:PRODUCAO /PERSISTENT:YES");   
+	system("NET USE p: \\\\SERVER\\NOVAORA =#MyLq8& /USER:PRODUCAO /PERSISTENT:YES");   
+    exit(1);
 }
 
